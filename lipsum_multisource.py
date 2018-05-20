@@ -54,6 +54,5 @@ def print_texts():
 
 
 # to do: replace untranslatable words with 'lorem'. to do so: convert to array...run all through '.detect' command...if not 'latin', replace with 'lorem'   # noqa: E501
-
 print_sources()
 print_texts()
