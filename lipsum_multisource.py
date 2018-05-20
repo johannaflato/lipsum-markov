@@ -1,22 +1,25 @@
 # coding: utf-8
 import markovify
 import glob
-from numpy import random
+import random
 from googletrans import Translator
 
 # randomly sample from sources.
 sourcelist = []
-n_loops = 5  # look into altering this to loop endlessly, printing every few minutes.   # noqa: E501
+n_loops = 3  # look into altering this to loop endlessly, printing every few minutes.   # noqa: E501
 
 for filename in glob.glob('data/*.txt'):
     sourcelist.append(filename)
 
 
 def lipsum_generate():
-    for i in range(n_loops):
-        n_sources = random.randint(4, 15)
+    for iteration in range(n_loops):
+        n_sources = random.randint(1, 30)
         sourcelist_sample = []
-        sourcelist_sample = random.choice(sourcelist, n_sources)
+        sourcelist_sample = random.sample(sourcelist, n_sources)
+
+        def print_iteration():
+            print ('ITERATION %s / %s: \n') % (iteration + 1, n_loops)
 
         def print_sources():
             sourcelist_sample_toprint = list(sourcelist_sample)
@@ -49,17 +52,20 @@ def lipsum_generate():
 
         # print english text and latin text.
         def print_texts():
-            print la_text + '\n'
-            print '<-->' + '\n'
             print en_text + '\n'
+            print '<-->' + '\n'
+            print la_text + '\n'
 
         def print_stats():
             print ('(%s sentences generated from %s sources)' % (n_sent, n_sources))   # noqa: E501
 
+        print '\n'
+        print_iteration()
         print_sources()
         print_texts()
         print_stats()
-        print '----' + '\n'
+        print '\n' + '----'
 
 
 lipsum_generate()
+# consider making functions for 'print,' 'write files/csv,' 'loop on end' etc   # noqa: E501
