@@ -32,9 +32,11 @@ for s in sourcelist_sample:
 lipsum_model = markovify.combine(markoved_texts)
 
 n_sent = random.randint(8, 12)
-chain = []
+sent_chain = []
 
 for i in range(n_sent):
-    chain.append(lipsum_model.make_sentence())
+    sent_chain.append(lipsum_model.make_sentence())
 
-print ' '.join(chain)
+new_text = ' '.join(sent_chain)
+
+print new_text
